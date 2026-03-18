@@ -645,8 +645,10 @@
 <section id="contact">
   <div class="reveal"><h2 class="contact-heading">Let's build<br>something <em>great.</em></h2></div>
   <div class="contact-details reveal">
-    <div class="contact-item"><span class="contact-item-label">Email</span><span class="contact-item-value"><a href="/cdn-cgi/l/email-protection#c8baa9a6a2bd88a1adadade6a7baaf"><span class="__cf_email__" data-cfemail="6f1d0e01051a2f060a0a0a41001d08">[email&#160;protected]</span></a></span></div>
-    <div class="contact-item"><span class="contact-item-label">Phone</span><span class="contact-item-value"><a href="tel:+14632123407">+1-463-212-3407</a></span></div>
+    <div class="contact-item">
+      <span class="contact-item-label">Email</span>
+      <span class="contact-item-value" id="rrn-email"><!-- protected --></span>
+    </div>
     <div class="contact-item"><span class="contact-item-label">LinkedIn</span><span class="contact-item-value"><a href="https://linkedin.com/in/ranjitrnair" target="_blank">linkedin.com/in/ranjitrnair ↗</a></span></div>
     <div class="contact-item"><span class="contact-item-label">IEEE Xplore</span><span class="contact-item-value"><a href="https://ieeexplore.ieee.org/author/37085990801" target="_blank">Published Author Profile ↗</a></span></div>
     <div class="contact-item"><span class="contact-item-label">ICANNWiki</span><span class="contact-item-value"><a href="https://icannwiki.org/Ranjit_R_Nair" target="_blank">icannwiki.org/Ranjit_R_Nair ↗</a></span></div>
@@ -682,6 +684,19 @@
   setTimeout(() => {
     revealEls.forEach(el => el.classList.add('visible'));
   }, 2500);
+</script>
+
+
+<script>
+  // Email rendered from char codes — invisible to crawlers
+  (function() {
+    var c = [114,97,110,106,117,64,105,101,101,101,46,111,114,103];
+    var e = c.map(function(n){ return String.fromCharCode(n); }).join('');
+    var el = document.getElementById('rrn-email');
+    if (el) {
+      el.innerHTML = '<a href="mailto:' + e + '" style="color:inherit;text-decoration:none;border-bottom:1px solid rgba(245,240,232,.2)">' + e + '</a>';
+    }
+  })();
 </script>
 </body>
 </html>
