@@ -4,940 +4,528 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Ranjit Ramakrishnan Nair — Senior Product Manager</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #0d0f14;
-    --bg2: #131620;
-    --bg3: #1a1e2a;
+    --ink: #0d0d0d;
+    --cream: #f5f0e8;
     --gold: #c9a84c;
-    --gold-light: #e8c97a;
-    --gold-dim: #8a6d2e;
-    --text: #e8e4dc;
-    --text-dim: #8a8880;
-    --text-muted: #4a4845;
-    --border: #2a2e3a;
-    --border-gold: rgba(201,168,76,0.25);
-    --accent: #3a8eff;
+    --gold-light: #e8d5a3;
+    --rust: #b85c38;
+    --slate: #3a4a5c;
+    --muted: #7a7a7a;
+    --border: #d8d0c0;
   }
-
-  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
-
-  body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: 'Outfit', sans-serif;
-    font-weight: 300;
-    line-height: 1.6;
-    overflow-x: hidden;
-  }
-
-  /* ─── NOISE OVERLAY ─── */
+  body { font-family: 'DM Sans', sans-serif; background-color: var(--cream); color: var(--ink); overflow-x: hidden; }
   body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
+    content: ''; position: fixed; inset: 0;
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
-    pointer-events: none;
-    z-index: 1000;
-    opacity: 0.4;
+    pointer-events: none; z-index: 1000; opacity: 0.5;
   }
-
-  /* ─── NAV ─── */
   nav {
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    z-index: 100;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1.4rem 4rem;
-    background: rgba(13,15,20,0.85);
-    backdrop-filter: blur(16px);
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1.25rem 4rem;
+    background: rgba(245,240,232,0.88); backdrop-filter: blur(12px);
     border-bottom: 1px solid var(--border);
   }
+  .nav-logo { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 700; color: var(--ink); text-decoration: none; }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a { font-family: 'DM Mono', monospace; font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--ink); }
+
+  .hero { min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr; position: relative; overflow: hidden; }
+  .hero-left { display: flex; flex-direction: column; justify-content: center; padding: 8rem 4rem 4rem 6rem; }
+  .hero-eyebrow { font-family: 'DM Mono', monospace; font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.5rem; animation: fadeUp 0.8s 0.1s both; }
+  .hero-name { font-family: 'Playfair Display', serif; font-size: clamp(3rem, 5vw, 5.5rem); font-weight: 900; line-height: 1.0; color: var(--ink); margin-bottom: 0.5rem; animation: fadeUp 0.8s 0.2s both; }
+  .hero-name em { font-style: italic; color: var(--rust); }
+  .hero-title { font-family: 'DM Mono', monospace; font-size: 0.8rem; color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 2.5rem; animation: fadeUp 0.8s 0.3s both; }
+  .hero-desc { font-size: 1rem; line-height: 1.75; color: var(--slate); max-width: 480px; margin-bottom: 3rem; font-weight: 300; animation: fadeUp 0.8s 0.4s both; }
+  .hero-stats { display: flex; gap: 2.5rem; margin-bottom: 3rem; animation: fadeUp 0.8s 0.5s both; }
+  .stat-number { font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 700; color: var(--ink); line-height: 1; }
+  .stat-label { font-family: 'DM Mono', monospace; font-size: 0.6rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-top: 0.25rem; }
+  .hero-cta { display: flex; gap: 1rem; animation: fadeUp 0.8s 0.6s both; }
+  .btn-primary { display: inline-flex; align-items: center; gap: 0.5rem; background: var(--ink); color: var(--cream); padding: 0.85rem 2rem; font-family: 'DM Mono', monospace; font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; text-decoration: none; border: 2px solid var(--ink); transition: all 0.25s; }
+  .btn-primary:hover { background: var(--gold); border-color: var(--gold); color: var(--ink); }
+  .btn-outline { display: inline-flex; align-items: center; gap: 0.5rem; background: transparent; color: var(--ink); padding: 0.85rem 2rem; font-family: 'DM Mono', monospace; font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; text-decoration: none; border: 2px solid var(--ink); transition: all 0.25s; }
+  .btn-outline:hover { background: var(--ink); color: var(--cream); }
+
+  .hero-right { position: relative; display: flex; align-items: center; justify-content: center; padding: 8rem 4rem 4rem 2rem; overflow: hidden; }
+  .hero-graphic { position: relative; width: 340px; height: 420px; animation: fadeUp 1s 0.4s both; }
+  .hero-card { position: absolute; background: white; border: 1px solid var(--border); padding: 2rem; box-shadow: 8px 8px 0 var(--gold-light); }
+  .hero-card-main { width: 280px; top: 40px; left: 40px; }
+  .card-label { font-family: 'DM Mono', monospace; font-size: 0.6rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.75rem; }
+  .card-value { font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 700; color: var(--ink); line-height: 1; }
+  .card-sub { font-size: 0.8rem; color: var(--muted); margin-top: 0.35rem; }
+  .hero-card-accent { width: 200px; top: 200px; right: 0; background: var(--ink); color: var(--cream); border-color: var(--ink); box-shadow: 6px 6px 0 var(--rust); }
+  .hero-card-accent .card-label { color: var(--gold); }
+  .hero-card-accent .card-value { color: var(--cream); font-size: 1.5rem; }
+  .hero-card-accent .card-sub { color: rgba(245,240,232,0.6); }
+  .hero-badge { position: absolute; top: 0; right: 20px; width: 90px; height: 90px; border-radius: 50%; background: var(--gold); display: flex; align-items: center; justify-content: center; text-align: center; animation: spin 20s linear infinite; }
+  .hero-badge span { font-family: 'DM Mono', monospace; font-size: 0.48rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink); font-weight: 500; padding: 0.5rem; line-height: 1.4; }
+  .decorative-line { position: absolute; left: 0; top: 50%; width: 1px; height: 60%; transform: translateY(-50%); background: linear-gradient(to bottom, transparent, var(--border), transparent); }
+
+  section { padding: 7rem 6rem; position: relative; }
+  .section-label { font-family: 'DM Mono', monospace; font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 1rem; }
+  .section-title { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 3.5vw, 3.5rem); font-weight: 900; line-height: 1.1; color: var(--ink); margin-bottom: 1rem; }
+  .section-title em { font-style: italic; color: var(--rust); }
+
+  #experience { background: var(--ink); color: var(--cream); }
+  #experience .section-title { color: var(--cream); }
+  .exp-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; margin-top: 4rem; }
+  .exp-card { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); padding: 2.5rem; transition: background 0.3s; }
+  .exp-card:hover { background: rgba(201,168,76,0.08); border-color: rgba(201,168,76,0.3); }
+  .exp-period { font-family: 'DM Mono', monospace; font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); margin-bottom: 1rem; }
+  .exp-role { font-family: 'Playfair Display', serif; font-size: 1.4rem; font-weight: 700; color: var(--cream); margin-bottom: 0.35rem; line-height: 1.2; }
+  .exp-company { font-family: 'DM Mono', monospace; font-size: 0.75rem; color: rgba(245,240,232,0.5); margin-bottom: 1.5rem; }
+  .exp-highlights { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+  .exp-highlights li { font-size: 0.88rem; line-height: 1.65; color: rgba(245,240,232,0.7); padding-left: 1rem; position: relative; }
+  .exp-highlights li::before { content: '—'; position: absolute; left: 0; color: var(--gold); }
+  .exp-tag { display: inline-block; margin-top: 1.5rem; padding: 0.3rem 0.75rem; background: rgba(201,168,76,0.15); border: 1px solid rgba(201,168,76,0.3); font-family: 'DM Mono', monospace; font-size: 0.6rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); }
+
+  #awards { background: var(--slate); color: var(--cream); }
+  #awards .section-title { color: var(--cream); }
+  .awards-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; margin-top: 4rem; }
+  .award-card { background: rgba(255,255,255,0.04); padding: 2.5rem 2rem; border-top: 3px solid var(--gold); transition: background 0.3s; }
+  .award-card:hover { background: rgba(255,255,255,0.07); }
+  .award-year { font-family: 'DM Mono', monospace; font-size: 0.65rem; letter-spacing: 0.15em; color: var(--gold); margin-bottom: 0.75rem; }
+  .award-title { font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; color: var(--cream); line-height: 1.3; margin-bottom: 0.6rem; }
+  .award-body { font-size: 0.8rem; line-height: 1.6; color: rgba(245,240,232,0.6); }
+  .award-body a { color: var(--gold-light); text-decoration: none; border-bottom: 1px solid rgba(201,168,76,0.3); }
+  .award-body a:hover { color: var(--gold); }
+
+  #impact { background: var(--cream); }
+  .impact-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-top: 4rem; }
+  .impact-card { border: 1px solid var(--border); padding: 2.5rem 2rem; background: white; transition: box-shadow 0.3s, transform 0.3s; }
+  .impact-card:hover { box-shadow: 6px 6px 0 var(--gold-light); transform: translate(-2px,-2px); }
+  .impact-icon { font-size: 1.5rem; margin-bottom: 1rem; }
+  .impact-title { font-family: 'Playfair Display', serif; font-size: 1.05rem; font-weight: 700; color: var(--ink); margin-bottom: 0.75rem; line-height: 1.3; }
+  .impact-body { font-size: 0.84rem; line-height: 1.7; color: var(--slate); }
+  .impact-body a { color: var(--rust); text-decoration: none; border-bottom: 1px solid rgba(184,92,56,0.3); transition: all 0.2s; }
+  .impact-body a:hover { color: var(--ink); }
+  .impact-stat { font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 900; color: var(--gold); margin-top: 1.5rem; line-height: 1; }
+  .impact-stat-label { font-family: 'DM Mono', monospace; font-size: 0.6rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-top: 0.2rem; }
+
+  #volunteer { background: var(--ink); color: var(--cream); padding: 7rem 6rem; }
+  #volunteer .section-title { color: var(--cream); }
+  .vol-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; margin-top: 4rem; }
+  .vol-card { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); padding: 2rem 2.5rem; transition: background 0.3s; }
+  .vol-card:hover { background: rgba(201,168,76,0.06); border-color: rgba(201,168,76,0.2); }
+  .vol-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.5rem; }
+  .vol-org { font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 700; color: var(--cream); }
+  .vol-org a { color: inherit; text-decoration: none; border-bottom: 1px solid rgba(201,168,76,0.3); }
+  .vol-org a:hover { color: var(--gold); }
+  .vol-period { font-family: 'DM Mono', monospace; font-size: 0.6rem; letter-spacing: 0.1em; color: var(--gold); white-space: nowrap; padding-top: 0.3rem; }
+  .vol-role { font-family: 'DM Mono', monospace; font-size: 0.68rem; color: var(--gold); letter-spacing: 0.08em; margin-bottom: 1rem; }
+  .vol-details { font-size: 0.84rem; line-height: 1.7; color: rgba(245,240,232,0.65); }
+  .vol-details a { color: var(--gold-light); text-decoration: none; border-bottom: 1px solid rgba(201,168,76,0.3); }
+  .vol-details a:hover { color: var(--gold); }
+
+  #skills { padding: 7rem 6rem; }
+  .skills-layout { display: grid; grid-template-columns: 1fr 1.5fr; gap: 6rem; margin-top: 4rem; align-items: start; }
+  .skills-intro { font-size: 1rem; line-height: 1.75; color: var(--slate); font-weight: 300; }
+  .skills-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+  .skill-group h4 { font-family: 'DM Mono', monospace; font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.75rem; }
+  .skill-list { display: flex; flex-direction: column; gap: 0.4rem; }
+  .skill-item { display: flex; align-items: center; gap: 0.6rem; font-size: 0.88rem; color: var(--slate); }
+  .skill-item::before { content: ''; display: block; width: 5px; height: 5px; background: var(--gold); flex-shrink: 0; }
+
+  #contact { background: var(--ink); padding: 7rem 6rem; display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center; }
+  .contact-heading { font-family: 'Playfair Display', serif; font-size: clamp(2.5rem, 4vw, 4.5rem); font-weight: 900; color: var(--cream); line-height: 1.05; }
+  .contact-heading em { font-style: italic; color: var(--gold); }
+  .contact-details { display: flex; flex-direction: column; gap: 2rem; }
+  .contact-item { display: flex; flex-direction: column; gap: 0.3rem; }
+  .contact-item-label { font-family: 'DM Mono', monospace; font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); }
+  .contact-item-value { font-size: 1rem; color: var(--cream); font-weight: 300; }
+  .contact-item-value a { color: inherit; text-decoration: none; border-bottom: 1px solid rgba(245,240,232,0.2); transition: all 0.2s; }
+  .contact-item-value a:hover { border-color: var(--gold); color: var(--gold); }
+
+  footer { background: var(--ink); border-top: 1px solid rgba(255,255,255,0.06); padding: 2rem 6rem; display: flex; justify-content: space-between; align-items: center; }
+  .footer-copy { font-family: 'DM Mono', monospace; font-size: 0.65rem; letter-spacing: 0.1em; color: rgba(245,240,232,0.3); }
+  .footer-badges { display: flex; gap: 1.5rem; }
+  .footer-badge { font-family: 'DM Mono', monospace; font-size: 0.6rem; letter-spacing: 0.1em; color: var(--gold); text-decoration: none; border-bottom: 1px solid rgba(201,168,76,0.3); transition: all 0.2s; }
+  .footer-badge:hover { color: var(--gold-light); }
+
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .reveal.visible { opacity: 1; transform: none; }
 
-  .nav-logo {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.15rem;
-    letter-spacing: 0.12em;
-    color: var(--gold);
-    text-transform: uppercase;
-  }
-
-  .nav-links {
-    display: flex;
-    gap: 2.5rem;
-    list-style: none;
-  }
-
-  .nav-links a {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.7rem;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--text-dim);
-    text-decoration: none;
-    transition: color 0.2s;
-  }
-
-  .nav-links a:hover { color: var(--gold); }
-
-  /* ─── HERO ─── */
-  .hero {
-    min-height: 100vh;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    align-items: center;
-    padding: 8rem 4rem 4rem;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .hero::after {
-    content: '';
-    position: absolute;
-    top: -20%;
-    right: -10%;
-    width: 70vw;
-    height: 70vw;
-    background: radial-gradient(circle, rgba(201,168,76,0.05) 0%, transparent 60%);
-    pointer-events: none;
-  }
-
-  .hero-left {
-    padding-right: 4rem;
-    animation: fadeUp 0.9s ease both;
-  }
-
-  .hero-eyebrow {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.68rem;
-    letter-spacing: 0.25em;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 1.5rem;
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-  }
-
-  .hero-eyebrow::before {
-    content: '';
-    display: inline-block;
-    width: 40px;
-    height: 1px;
-    background: var(--gold);
-  }
-
-  h1 {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(3.5rem, 6vw, 6rem);
-    font-weight: 300;
-    line-height: 1.05;
-    letter-spacing: -0.01em;
-    margin-bottom: 1.5rem;
-  }
-
-  h1 em {
-    font-style: italic;
-    color: var(--gold-light);
-  }
-
-  .hero-sub {
-    font-size: 1rem;
-    color: var(--text-dim);
-    max-width: 440px;
-    margin-bottom: 2.5rem;
-    line-height: 1.8;
-  }
-
-  .hero-cta {
-    display: flex;
-    gap: 1rem;
-    flex-wrap: wrap;
-  }
-
-  .btn-primary {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.6rem;
-    padding: 0.85rem 2rem;
-    background: var(--gold);
-    color: var(--bg);
-    font-family: 'DM Mono', monospace;
-    font-size: 0.72rem;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    text-decoration: none;
-    transition: background 0.2s, transform 0.15s;
-  }
-
-  .btn-primary:hover {
-    background: var(--gold-light);
-    transform: translateY(-1px);
-  }
-
-  .btn-ghost {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.6rem;
-    padding: 0.85rem 2rem;
-    border: 1px solid var(--border-gold);
-    color: var(--gold);
-    font-family: 'DM Mono', monospace;
-    font-size: 0.72rem;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    text-decoration: none;
-    transition: border-color 0.2s, background 0.2s;
-  }
-
-  .btn-ghost:hover {
-    background: rgba(201,168,76,0.08);
-    border-color: var(--gold);
-  }
-
-  .hero-right {
-    animation: fadeUp 0.9s 0.2s ease both;
-    display: flex;
-    flex-direction: column;
-    gap: 1px;
-  }
-
-  .stat-card {
-    background: var(--bg2);
-    border: 1px solid var(--border);
-    border-left: 3px solid var(--gold-dim);
-    padding: 1.6rem 2rem;
-    transition: border-left-color 0.2s, transform 0.2s;
-  }
-
-  .stat-card:hover {
-    border-left-color: var(--gold);
-    transform: translateX(4px);
-  }
-
-  .stat-number {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 2.8rem;
-    font-weight: 300;
-    color: var(--gold-light);
-    line-height: 1;
-    margin-bottom: 0.3rem;
-  }
-
-  .stat-label {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.65rem;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--text-dim);
-  }
-
-  /* ─── SECTION BASE ─── */
-  section {
-    padding: 6rem 4rem;
-    max-width: 1200px;
-    margin: 0 auto;
-  }
-
-  .section-label {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.65rem;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 0.8rem;
-    display: flex;
-    align-items: center;
-    gap: 0.8rem;
-  }
-
-  .section-label::after {
-    content: '';
-    flex: 1;
-    height: 1px;
-    background: var(--border);
-    max-width: 60px;
-  }
-
-  h2 {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(2rem, 4vw, 3.2rem);
-    font-weight: 300;
-    line-height: 1.15;
-    margin-bottom: 3rem;
-  }
-
-  h2 em { font-style: italic; color: var(--gold-light); }
-
-  /* ─── EXPERIENCE ─── */
-  #experience { max-width: 1200px; }
-
-  .exp-grid {
-    display: grid;
-    gap: 1px;
-    background: var(--border);
-  }
-
-  .exp-item {
-    background: var(--bg);
-    display: grid;
-    grid-template-columns: 200px 1fr;
-    gap: 0;
-    transition: background 0.2s;
-  }
-
-  .exp-item:hover { background: var(--bg2); }
-
-  .exp-meta {
-    padding: 2.5rem;
-    border-right: 1px solid var(--border);
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    gap: 0.5rem;
-  }
-
-  .exp-period {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.65rem;
-    letter-spacing: 0.1em;
-    color: var(--gold-dim);
-  }
-
-  .exp-company {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.05rem;
-    color: var(--text-dim);
-  }
-
-  .exp-content {
-    padding: 2.5rem;
-  }
-
-  .exp-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.4rem;
-    font-weight: 400;
-    margin-bottom: 1rem;
-    color: var(--text);
-  }
-
-  .exp-bullets {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-  }
-
-  .exp-bullets li {
-    font-size: 0.88rem;
-    color: var(--text-dim);
-    padding-left: 1.2rem;
-    position: relative;
-    line-height: 1.7;
-  }
-
-  .exp-bullets li::before {
-    content: '—';
-    position: absolute;
-    left: 0;
-    color: var(--gold-dim);
-  }
-
-  .exp-tag {
-    display: inline-block;
-    margin-top: 0.8rem;
-    padding: 0.2rem 0.7rem;
-    border: 1px solid var(--border-gold);
-    font-family: 'DM Mono', monospace;
-    font-size: 0.6rem;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--gold-dim);
-  }
-
-  /* ─── SKILLS ─── */
-  #skills { background: var(--bg2); max-width: 100%; padding: 6rem 0; }
-  #skills .inner { max-width: 1200px; margin: 0 auto; padding: 0 4rem; }
-
-  .skills-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 1px;
-    background: var(--border);
-    margin-top: 3rem;
-  }
-
-  .skill-block {
-    background: var(--bg2);
-    padding: 2rem;
-    transition: background 0.2s;
-  }
-
-  .skill-block:hover { background: var(--bg3); }
-
-  .skill-block-title {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.62rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 1.2rem;
-  }
-
-  .skill-list {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 0.4rem;
-  }
-
-  .skill-list li {
-    font-size: 0.85rem;
-    color: var(--text-dim);
-    display: flex;
-    align-items: center;
-    gap: 0.6rem;
-  }
-
-  .skill-list li::before {
-    content: '';
-    display: inline-block;
-    width: 4px;
-    height: 4px;
-    background: var(--gold-dim);
-    flex-shrink: 0;
-  }
-
-  /* ─── AWARDS ─── */
-  .awards-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 1.5rem;
-    margin-top: 1rem;
-  }
-
-  .award-card {
-    background: var(--bg2);
-    border: 1px solid var(--border);
-    border-top: 2px solid var(--gold-dim);
-    padding: 2rem;
-    transition: border-top-color 0.2s, transform 0.2s;
-  }
-
-  .award-card:hover {
-    border-top-color: var(--gold);
-    transform: translateY(-3px);
-  }
-
-  .award-org {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.62rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 0.6rem;
-  }
-
-  .award-year {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 2rem;
-    font-weight: 300;
-    color: var(--text-muted);
-    line-height: 1;
-    margin-bottom: 0.8rem;
-  }
-
-  .award-title {
-    font-size: 0.9rem;
-    color: var(--text);
-    line-height: 1.6;
-  }
-
-  /* ─── EDUCATION ─── */
-  .edu-row {
-    display: flex;
-    align-items: baseline;
-    justify-content: space-between;
-    padding: 1.5rem 0;
-    border-bottom: 1px solid var(--border);
-    gap: 2rem;
-  }
-
-  .edu-degree {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.2rem;
-    color: var(--text);
-  }
-
-  .edu-school {
-    font-size: 0.85rem;
-    color: var(--text-dim);
-    margin-top: 0.2rem;
-  }
-
-  .edu-year {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.7rem;
-    letter-spacing: 0.1em;
-    color: var(--gold-dim);
-    flex-shrink: 0;
-  }
-
-  /* ─── VOLUNTEER ─── */
-  .vol-list {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 1rem;
-    margin-top: 1rem;
-  }
-
-  .vol-item {
-    padding: 1.2rem 1.5rem;
-    background: var(--bg2);
-    border: 1px solid var(--border);
-    font-size: 0.85rem;
-    color: var(--text-dim);
-    line-height: 1.6;
-  }
-
-  .vol-org {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.65rem;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 0.3rem;
-  }
-
-  /* ─── CONTACT ─── */
-  #contact {
-    background: var(--bg2);
-    max-width: 100%;
-    padding: 6rem 4rem;
-    border-top: 1px solid var(--border);
-  }
-
-  .contact-inner {
-    max-width: 1200px;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 4rem;
-    align-items: start;
-  }
-
-  .contact-info {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-  }
-
-  .contact-row {
-    display: flex;
-    gap: 1.5rem;
-    align-items: baseline;
-    padding: 1rem 0;
-    border-bottom: 1px solid var(--border);
-  }
-
-  .contact-row-label {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.62rem;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--text-muted);
-    width: 80px;
-    flex-shrink: 0;
-  }
-
-  .contact-row a, .contact-row span {
-    font-size: 0.9rem;
-    color: var(--text-dim);
-    text-decoration: none;
-    transition: color 0.2s;
-  }
-
-  .contact-row a:hover { color: var(--gold); }
-
-  .contact-tagline {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(1.8rem, 3.5vw, 2.8rem);
-    font-weight: 300;
-    line-height: 1.2;
-    color: var(--text);
-  }
-
-  .contact-tagline em {
-    font-style: italic;
-    color: var(--gold-light);
-  }
-
-  /* ─── FOOTER ─── */
-  footer {
-    padding: 1.5rem 4rem;
-    background: var(--bg);
-    border-top: 1px solid var(--border);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  footer p {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.62rem;
-    letter-spacing: 0.12em;
-    color: var(--text-muted);
-  }
-
-  /* ─── DIVIDER LINE ─── */
-  .divider {
-    width: 100%;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, var(--gold-dim), transparent);
-    margin: 0 auto;
-  }
-
-  /* ─── ANIMATIONS ─── */
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(24px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  .fade-in {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.7s ease, transform 0.7s ease;
-  }
-
-  .fade-in.visible {
-    opacity: 1;
-    transform: none;
-  }
-
-  /* ─── RESPONSIVE ─── */
   @media (max-width: 900px) {
-    nav { padding: 1.2rem 2rem; }
-    .nav-links { display: none; }
-    .hero { grid-template-columns: 1fr; padding: 7rem 2rem 3rem; }
-    .hero-left { padding-right: 0; margin-bottom: 2rem; }
-    section { padding: 4rem 2rem; }
-    .exp-item { grid-template-columns: 1fr; }
-    .exp-meta { border-right: none; border-bottom: 1px solid var(--border); padding: 1.5rem 2rem; }
-    #contact { padding: 4rem 2rem; }
-    .contact-inner { grid-template-columns: 1fr; }
-    footer { padding: 1.2rem 2rem; flex-direction: column; gap: 0.5rem; text-align: center; }
-    #skills .inner { padding: 0 2rem; }
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { gap: 1rem; }
+    .nav-links a { font-size: 0.58rem; }
+    .hero { grid-template-columns: 1fr; }
+    .hero-right { display: none; }
+    .hero-left { padding: 7rem 2rem 4rem; }
+    section, #volunteer, #skills, #contact { padding: 5rem 2rem; }
+    .exp-grid, .vol-grid, .impact-grid, .awards-grid { grid-template-columns: 1fr; }
+    .skills-layout { grid-template-columns: 1fr; gap: 3rem; }
+    footer { padding: 1.5rem 2rem; flex-direction: column; gap: 1rem; text-align: center; }
   }
 </style>
 </head>
 <body>
 
-<!-- NAV -->
 <nav>
-  <div class="nav-logo">Ranjit R. Nair</div>
+  <a href="#" class="nav-logo">RRN</a>
   <ul class="nav-links">
     <li><a href="#experience">Experience</a></li>
-    <li><a href="#skills">Skills</a></li>
     <li><a href="#awards">Awards</a></li>
+    <li><a href="#impact">Impact</a></li>
+    <li><a href="#volunteer">Community</a></li>
+    <li><a href="#skills">Skills</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
 </nav>
 
 <!-- HERO -->
-<div class="hero">
+<section class="hero" id="home">
   <div class="hero-left">
-    <div class="hero-eyebrow">Senior Product Manager</div>
-    <h1>Ranjit<br><em>Ramakrishnan</em><br>Nair</h1>
-    <p class="hero-sub">Award-winning product leader with 10+ years driving fintech, crypto, and edtech platforms. From $1B+ AUM consumer apps to institutional-grade trading infrastructure — building products that scale.</p>
+    <p class="hero-eyebrow">Senior Product Manager · Toronto, Canada</p>
+    <h1 class="hero-name">Ranjit <em>R.</em><br>Nair</h1>
+    <p class="hero-title">Award-Winning Product Leader · IEEE Recognized</p>
+    <p class="hero-desc">Driving $1B+ AUM fintech platforms, building 0-to-1 B2B trading infrastructure for institutional investors, and pioneering edtech reaching 12 countries. Globally recognized by IEEE for contributions to engineering education, humanitarian technology, and internet governance.</p>
+    <div class="hero-stats">
+      <div class="stat-item">
+        <div class="stat-number">10+</div>
+        <div class="stat-label">Years</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">850K</div>
+        <div class="stat-label">Customers</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">$1B+</div>
+        <div class="stat-label">Peak AUM</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">7+</div>
+        <div class="stat-label">IEEE Awards</div>
+      </div>
+    </div>
     <div class="hero-cta">
-      <a href="mailto:ranju@ieee.org" class="btn-primary">Get in Touch →</a>
-      <a href="https://linkedin.com/in/ranjitrnair" target="_blank" class="btn-ghost">LinkedIn ↗</a>
+      <a href="mailto:ranju@ieee.org" class="btn-primary">Get In Touch</a>
+      <a href="https://linkedin.com/in/ranjitrnair" target="_blank" class="btn-outline">LinkedIn ↗</a>
     </div>
   </div>
   <div class="hero-right">
-    <div class="stat-card">
-      <div class="stat-number">$1B+</div>
-      <div class="stat-label">Peak AUM on fintech platform</div>
-    </div>
-    <div class="stat-card">
-      <div class="stat-number">$10M</div>
-      <div class="stat-label">Monthly ARR — B2B crypto trading</div>
-    </div>
-    <div class="stat-card">
-      <div class="stat-number">850K+</div>
-      <div class="stat-label">Customers served globally</div>
-    </div>
-    <div class="stat-card">
-      <div class="stat-number">12</div>
-      <div class="stat-label">Countries — edtech platform launch</div>
+    <div class="decorative-line"></div>
+    <div class="hero-graphic">
+      <div class="hero-badge"><span>IEEE Award Winner · Global Leader ·</span></div>
+      <div class="hero-card hero-card-main">
+        <div class="card-label">Current Role</div>
+        <div class="card-value">$10M</div>
+        <div class="card-sub">Monthly ARR — Drip/DeFi Holdings</div>
+      </div>
+      <div class="hero-card hero-card-accent">
+        <div class="card-label">TISP Reach</div>
+        <div class="card-value">60K+</div>
+        <div class="card-sub">Pre-university students impacted</div>
+      </div>
     </div>
   </div>
-</div>
-
-<div class="divider"></div>
+</section>
 
 <!-- EXPERIENCE -->
 <section id="experience">
-  <div class="section-label">Career</div>
-  <h2>Work <em>Experience</em></h2>
-
-  <div class="exp-grid fade-in">
-    <div class="exp-item">
-      <div class="exp-meta">
-        <div class="exp-period">10/2022 — Present</div>
-        <div class="exp-company">Drip · Defi Holdings</div>
-      </div>
-      <div class="exp-content">
-        <div class="exp-title">Senior Product Manager — Founding Team</div>
-        <ul class="exp-bullets">
-          <li>Spearheaded development of a B2B crypto trading platform for institutional investors, achieving $10M monthly ARR.</li>
-          <li>Managed a cross-functional team of 28 professionals across product, engineering, compliance, and operations.</li>
-          <li>Implemented compliance measures using ComplyAdvantage and Chainalysis, adhering to FATF guidelines.</li>
-          <li>Designed end-to-end in-house KYB/KYC processes to international and regional standards.</li>
-          <li>Collaborated with banking partners to integrate FIAT rails across multiple currencies.</li>
-          <li>Platform licensed as a Virtual Asset Service Provider in EU, Canada, and Australia; supports 50+ tokens.</li>
-        </ul>
-        <span class="exp-tag">Crypto · Institutional · B2B · Compliance</span>
-      </div>
+  <div class="reveal">
+    <p class="section-label">Career</p>
+    <h2 class="section-title">Where I've <em>built</em></h2>
+  </div>
+  <div class="exp-grid">
+    <div class="exp-card reveal">
+      <p class="exp-period">Oct 2022 – Present</p>
+      <h3 class="exp-role">Senior Product Manager</h3>
+      <p class="exp-company">Drip · DeFi Holdings · Founding Team</p>
+      <ul class="exp-highlights">
+        <li>Spearheaded B2B crypto trading platform for institutional investors — $10M monthly ARR</li>
+        <li>Led cross-functional team of 28 across product, engineering & compliance</li>
+        <li>Implemented compliance via ComplyAdvantage & Chainalysis, adhering to FATF guidelines</li>
+        <li>Designed in-house KYB/KYC processes meeting international standards</li>
+        <li>Integrated FIAT rails with banking partners across multiple currencies</li>
+        <li>Licensed as Virtual Asset Service Provider in EU, Canada & Australia — 50+ tokens</li>
+      </ul>
+      <span class="exp-tag">B2B · Crypto · Institutional</span>
     </div>
-
-    <div class="exp-item">
-      <div class="exp-meta">
-        <div class="exp-period">09/2021 — 09/2022</div>
-        <div class="exp-company">Vauld · Defi Holdings</div>
-      </div>
-      <div class="exp-content">
-        <div class="exp-title">Product Manager</div>
-        <ul class="exp-bullets">
-          <li>Led a team of 24 engineers building a crypto fintech application handling $1B in peak AUM.</li>
-          <li>Launched an integrated in-app learning platform to improve user financial literacy.</li>
-          <li>Redesigned and scaled the lending platform serving 400K+ global customers.</li>
-        </ul>
-        <span class="exp-tag">Fintech · B2C · Lending · Scale</span>
-      </div>
+    <div class="exp-card reveal">
+      <p class="exp-period">Sep 2021 – Sep 2022</p>
+      <h3 class="exp-role">Product Manager</h3>
+      <p class="exp-company">Vauld · DeFi Holdings</p>
+      <ul class="exp-highlights">
+        <li>Led 24-engineer team building a crypto fintech app handling $1B+ in peak AUM</li>
+        <li>Launched integrated financial literacy platform within the app</li>
+        <li>Redesigned and scaled the lending platform for 400K+ global customers</li>
+      </ul>
+      <span class="exp-tag">B2C · Fintech · Lending</span>
     </div>
-
-    <div class="exp-item">
-      <div class="exp-meta">
-        <div class="exp-period">12/2017 — 08/2021</div>
-        <div class="exp-company">Enlighten Technologies</div>
-      </div>
-      <div class="exp-content">
-        <div class="exp-title">Co-Founder / Head of Product</div>
-        <ul class="exp-bullets">
-          <li>Interviewed 850 users and built an ML-driven edtech app that improved course completion from 5% to 26%.</li>
-          <li>Presented at LWMOOCs symposium and partnered with global MOOC providers.</li>
-          <li>Launched in 12 countries, acquired 2K+ learners in 6 months, achieved 16% increase in MAU.</li>
-        </ul>
-        <span class="exp-tag">Edtech · ML · 0→1 · Global</span>
-      </div>
+    <div class="exp-card reveal">
+      <p class="exp-period">Dec 2017 – Aug 2021</p>
+      <h3 class="exp-role">Co-Founder · Head of Product</h3>
+      <p class="exp-company">Enlighten Technologies</p>
+      <ul class="exp-highlights">
+        <li>Interviewed 850 users; built ML-driven app improving course completion from 5% to 26%</li>
+        <li>Presented at LWMOOCs symposium; partnered with global MOOC providers</li>
+        <li>Launched in 12 countries — 2K+ learners in 6 months, +16% MAUs</li>
+      </ul>
+      <span class="exp-tag">EdTech · 0-to-1 · ML</span>
     </div>
-
-    <div class="exp-item">
-      <div class="exp-meta">
-        <div class="exp-period">05/2015 — 11/2017</div>
-        <div class="exp-company">InApp Information Technologies</div>
-      </div>
-      <div class="exp-content">
-        <div class="exp-title">Project Manager</div>
-        <ul class="exp-bullets">
-          <li>Developed PoSBook, a cloud solution for salons and spas with web and Android apps.</li>
-          <li>Deployed AWS-based appointment, sales, and inventory tools for fashion and healthcare verticals.</li>
-          <li>Boosted UX satisfaction by 25% via iterative feedback and onsite user studies.</li>
-          <li>Managed EASE ERP project consolidating HR systems; launched Phase 1 in 8 months.</li>
-          <li>Built AngularJS app that improved team productivity by 30%.</li>
-        </ul>
-        <span class="exp-tag">SaaS · Cloud · ERP · UX</span>
-      </div>
+    <div class="exp-card reveal">
+      <p class="exp-period">Aug 2014 – Nov 2017</p>
+      <h3 class="exp-role">Project Manager</h3>
+      <p class="exp-company">InApp Information Technologies</p>
+      <ul class="exp-highlights">
+        <li>Developed PoSBook — cloud POS for salons & spas on AWS (web + Android)</li>
+        <li>Managed EASE ERP consolidating HR systems; launched Phase 1 in 8 months</li>
+        <li>Boosted UX 25% via iterative feedback; AngularJS app improved productivity 30%</li>
+      </ul>
+      <span class="exp-tag">SaaS · ERP · UX</span>
     </div>
   </div>
 </section>
-
-<div class="divider"></div>
-
-<!-- SKILLS -->
-<div id="skills">
-  <div class="inner">
-    <div class="section-label">Capabilities</div>
-    <h2>Skills &amp; <em>Tools</em></h2>
-    <div class="skills-grid fade-in">
-      <div class="skill-block">
-        <div class="skill-block-title">Product</div>
-        <ul class="skill-list">
-          <li>Product lifecycle management</li>
-          <li>Product strategy &amp; analytics</li>
-          <li>Roadmap &amp; prioritization</li>
-          <li>GTM strategy</li>
-          <li>Market &amp; user research</li>
-        </ul>
-      </div>
-      <div class="skill-block">
-        <div class="skill-block-title">Execution</div>
-        <ul class="skill-list">
-          <li>Agile methodologies</li>
-          <li>Team &amp; stakeholder management</li>
-          <li>UX design</li>
-          <li>Communication &amp; collaboration</li>
-          <li>Cross-functional leadership</li>
-        </ul>
-      </div>
-      <div class="skill-block">
-        <div class="skill-block-title">PM Tools</div>
-        <ul class="skill-list">
-          <li>Notion</li>
-          <li>Jira</li>
-          <li>Slack / MS Teams</li>
-          <li>Figma &amp; Balsamiq</li>
-          <li>Intercom, Typeform</li>
-        </ul>
-      </div>
-      <div class="skill-block">
-        <div class="skill-block-title">Analytics</div>
-        <ul class="skill-list">
-          <li>Google Analytics</li>
-          <li>Mixpanel</li>
-          <li>ComplyAdvantage</li>
-          <li>Chainalysis</li>
-          <li>Google Forms</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</div>
 
 <!-- AWARDS -->
 <section id="awards">
-  <div class="section-label">Recognition</div>
-  <h2>Awards &amp; <em>Honours</em></h2>
-  <div class="awards-grid fade-in">
-    <div class="award-card">
-      <div class="award-org">IEEE MGA</div>
-      <div class="award-year">2015</div>
-      <div class="award-title">Achievement Award — One of 3 global recipients for the E-Scientia Project.</div>
+  <div class="reveal">
+    <p class="section-label">Recognition</p>
+    <h2 class="section-title">IEEE <em>Awarded</em></h2>
+  </div>
+  <div class="awards-grid">
+    <div class="award-card reveal">
+      <p class="award-year">2017</p>
+      <h3 class="award-title">IEEE Power & Energy Society Outstanding Engineer Award</h3>
+      <p class="award-body">For invaluable support to PES educational activities and professional leadership winning global recognition for young professionals in Kerala. <a href="https://icannwiki.org/Ranjit_R_Nair" target="_blank">ICANNWiki profile ↗</a></p>
     </div>
-    <div class="award-card">
-      <div class="award-org">IEEE EAB</div>
-      <div class="award-year">2014</div>
-      <div class="award-title">Meritorious Achievement in Continuing Education — 2nd Indian awardee in history.</div>
+    <div class="award-card reveal">
+      <p class="award-year">2015 · 2016 · 2017</p>
+      <h3 class="award-title">Outstanding Section Membership Recruitment & Retention Award</h3>
+      <p class="award-body">Three consecutive years as Kerala Section Membership Development Chair — helped Kerala become the <strong>largest IEEE Section in India</strong> and 2nd in Asia-Pacific with 7,500+ members. <a href="https://icannwiki.org/Ranjit_R_Nair" target="_blank">Source ↗</a></p>
     </div>
-    <div class="award-card">
-      <div class="award-org">IEEE MGA GOLD</div>
-      <div class="award-year">2012</div>
-      <div class="award-title">Achievement Award — Recognised for leadership in IEEE Region 10.</div>
+    <div class="award-card reveal">
+      <p class="award-year">2016</p>
+      <h3 class="award-title">IEEE Kerala Section Outstanding Volunteer Award</h3>
+      <p class="award-body">For outstanding contribution to the IEEE Kerala Section and the global IEEE community in Member Engagement and Young Professionals leadership. <a href="https://icannwiki.org/Ranjit_R_Nair" target="_blank">Source ↗</a></p>
     </div>
-    <div class="award-card">
-      <div class="award-org">IEEE Region 10</div>
-      <div class="award-year">2012</div>
-      <div class="award-title">GOLD Volunteer Award — Youth engagement across Asia Pacific.</div>
+    <div class="award-card reveal">
+      <p class="award-year">2015</p>
+      <h3 class="award-title">IEEE MGA Achievement Award</h3>
+      <p class="award-body">One of only <strong>3 global recipients</strong> — for the E-Scientia Project engaging members in promoting science, technology, and IEEE among pre-university students worldwide. <a href="https://icannwiki.org/Ranjit_R_Nair" target="_blank">Source ↗</a></p>
+    </div>
+    <div class="award-card reveal">
+      <p class="award-year">2014</p>
+      <h3 class="award-title">IEEE EAB Meritorious Achievement in Continuing Education</h3>
+      <p class="award-body">Only the <strong>2nd Indian recipient</strong> of this award — for faculty training modules that improve educational instruction and student learning. <a href="https://icannwiki.org/Ranjit_R_Nair" target="_blank">Source ↗</a></p>
+    </div>
+    <div class="award-card reveal">
+      <p class="award-year">2012</p>
+      <h3 class="award-title">IEEE MGA GOLD Achievement Award</h3>
+      <p class="award-body">For exemplary contributions to IEEE GOLD in Region 10 and for bridging generations through GOLD activities across Asia-Pacific. <a href="https://icannwiki.org/Ranjit_R_Nair" target="_blank">Source ↗</a></p>
     </div>
   </div>
 </section>
 
-<div class="divider"></div>
-
-<!-- EDUCATION -->
-<section id="education">
-  <div class="section-label">Academic</div>
-  <h2><em>Education</em></h2>
-  <div class="fade-in">
-    <div class="edu-row">
-      <div>
-        <div class="edu-degree">Master of Engineering</div>
-        <div class="edu-school">Anna University, India</div>
-      </div>
-      <div class="edu-year">2013</div>
+<!-- IMPACT -->
+<section id="impact">
+  <div class="reveal">
+    <p class="section-label">Social Impact</p>
+    <h2 class="section-title">Beyond the <em>product</em></h2>
+  </div>
+  <div class="impact-grid">
+    <div class="impact-card reveal">
+      <div class="impact-icon">🎓</div>
+      <h3 class="impact-title">TISP — Teacher In-Service Program</h3>
+      <p class="impact-body">As <a href="https://yp.ieee.org/blog/2022/04/12/young-professionals-at-tencon-2015/" target="_blank">IEEE Region 10 Young Professionals Coordinator</a>, trained 393 volunteers across 8 Kerala locations in a single week — impacting 60,000+ pre-university students. Also trained <strong>500+ pre-university teachers from 21 countries</strong> at workshops in Bangkok, Sydney, and Kerala.</p>
+      <div class="impact-stat">60K+</div>
+      <div class="impact-stat-label">Students reached</div>
     </div>
-    <div class="edu-row">
-      <div>
-        <div class="edu-degree">Bachelor of Engineering</div>
-        <div class="edu-school">Anna University, India</div>
-      </div>
-      <div class="edu-year">2009</div>
+    <div class="impact-card reveal">
+      <div class="impact-icon">🌊</div>
+      <h3 class="impact-title">Kerala Flood Relief — IEEE Civil Response</h3>
+      <p class="impact-body">Involved from the initial stage of the <a href="https://site.ieee.org/sb-uol/volunteers-come-together-to-help-survivors-of-floods-in-kerala-india/" target="_blank">2018 Kerala floods IEEE response</a>. Presented "Kerala floods and IEEE's role in civil society response" at the <a href="http://2018.ieeeghtc.org/pages/disaster-management" target="_blank">IEEE Global Humanitarian Technology Conference 2018</a> in San Jose. The volunteer portal mobilized 55,000+ responders.</p>
+      <div class="impact-stat">55K+</div>
+      <div class="impact-stat-label">Volunteers mobilized</div>
+    </div>
+    <div class="impact-card reveal">
+      <div class="impact-icon">♿</div>
+      <h3 class="impact-title">Eyes Free Science Camps</h3>
+      <p class="impact-body">Founded and sustained a four-year program training differently-abled students across Kerala in science — a rare initiative bridging accessibility and STEM, organized under <a href="https://icannwiki.org/Ranjit_R_Nair" target="_blank">IEEE SIGHT (Special Interest Group on Humanitarian Technology)</a> as one of the first SIGHT groups formed globally.</p>
+    </div>
+    <div class="impact-card reveal">
+      <div class="impact-icon">🏫</div>
+      <h3 class="impact-title">Saastra Vismaya</h3>
+      <p class="impact-body">An initiative to train pre-university students of Government Rehabilitation homes across Kerala — bringing quality science and technology education to underserved youth. Recognized as part of <a href="https://icannwiki.org/Ranjit_R_Nair" target="_blank">IEEE Kerala's humanitarian outreach</a>.</p>
+    </div>
+    <div class="impact-card reveal">
+      <div class="impact-icon">🔬</div>
+      <h3 class="impact-title">E-Scientia — Global Science Exhibit</h3>
+      <p class="impact-body">Installed Kerala's first indigenously fabricated E-Scientia museum exhibit at C-SiS, CUSAT. As E-Scientia trainer, helped install similar modules in <strong>Trinidad & Tobago</strong> — earning the <a href="https://icannwiki.org/Ranjit_R_Nair" target="_blank">IEEE MGA Achievement Award 2015</a> as one of only 3 global recipients.</p>
+    </div>
+    <div class="impact-card reveal">
+      <div class="impact-icon">👩‍💻</div>
+      <h3 class="impact-title">Women in Engineering Advocacy</h3>
+      <p class="impact-body">Actively collaborated with <a href="https://ieeekerala.org/wie/" target="_blank">IEEE WIE Kerala Section</a> at <a href="https://yp.ieee.org/blog/2022/04/12/young-professionals-at-tencon-2015/" target="_blank">TENCON 2015</a> to promote women in engineering — co-organizing sessions addressing barriers for young women in technology and advocating for WIE Affinity Groups across IEEE sections globally.</p>
     </div>
   </div>
 </section>
 
 <!-- VOLUNTEER -->
 <section id="volunteer">
-  <div class="section-label">Giving Back</div>
-  <h2>Volunteer <em>Work</em></h2>
-  <div class="vol-list fade-in">
-    <div class="vol-item">
-      <div class="vol-org">IEEE</div>
-      2008 – Present · Multiple Board Roles
+  <div class="reveal">
+    <p class="section-label">Community</p>
+    <h2 class="section-title" style="color:var(--cream)">Global <em>contributions</em></h2>
+  </div>
+  <div class="vol-grid">
+    <div class="vol-card reveal">
+      <div class="vol-header">
+        <div class="vol-org"><a href="https://www.ieee.org" target="_blank">IEEE</a></div>
+        <div class="vol-period">2008 – Present</div>
+      </div>
+      <div class="vol-role">Multiple Board Roles · Region 10 & Kerala Section</div>
+      <div class="vol-details">Served as <a href="https://yp.ieee.org/blog/2022/04/12/young-professionals-at-tencon-2015/" target="_blank">IEEE Region 10 Young Professionals Coordinator</a>, Membership Development Chair (Kerala Section), Founding Chair of <a href="http://2018.ieeeghtc.org/pages/disaster-management" target="_blank">IEEE Kerala Young Professionals SIGHT</a> — one of the first SIGHT groups globally — and Conference Secretary of ISTAS 2016. First in Region 10 to organize a Young Professionals track at TENCON.</div>
     </div>
-    <div class="vol-item">
-      <div class="vol-org">ISOC</div>
-      2017–2019 · Founder Secretary
+    <div class="vol-card reveal">
+      <div class="vol-header">
+        <div class="vol-org"><a href="https://hkn.ieee.org/" target="_blank">IEEE Eta Kappa Nu (HKN)</a></div>
+        <div class="vol-period">2023 – Present</div>
+      </div>
+      <div class="vol-role">Professional Member · Invitation-Only Honor Society</div>
+      <div class="vol-details"><a href="https://en.wikipedia.org/wiki/Eta_Kappa_Nu" target="_blank">IEEE-HKN</a> is the honor society of IEEE — membership by invitation only, recognizing excellence in scholarship, character, and service across 260+ chapters and 200,000+ members globally. Inducted as a Professional Member in recognition of distinguished contributions to IEEE and engineering education.</div>
     </div>
-    <div class="vol-item">
-      <div class="vol-org">IEEE Eta Kappa Nu</div>
-      2023 – Present · Professional Member
+    <div class="vol-card reveal">
+      <div class="vol-header">
+        <div class="vol-org"><a href="https://www.internetsociety.org/" target="_blank">ISOC Trivandrum</a></div>
+        <div class="vol-period">2017 – 2019</div>
+      </div>
+      <div class="vol-role">Founder Secretary</div>
+      <div class="vol-details">As Founder Secretary of <a href="https://icannwiki.org/Ranjit_R_Nair" target="_blank">Internet Society Trivandrum (ISOC-TRV)</a>, organized the Consultation on Net Neutrality and internet governance awareness programs. Core organizer of the first <strong>India School on Internet Governance (inSIG 2016)</strong> at IIIT Hyderabad — 44 delegates from 9 countries.</div>
     </div>
-    <div class="vol-item">
-      <div class="vol-org">ICANN</div>
-      2017 – Present · At Large Contributor
+    <div class="vol-card reveal">
+      <div class="vol-header">
+        <div class="vol-org"><a href="https://atlarge.icann.org/" target="_blank">ICANN At-Large</a></div>
+        <div class="vol-period">2017 – Present</div>
+      </div>
+      <div class="vol-role">At-Large Contributor · Internet Governance</div>
+      <div class="vol-details">Active volunteer in the <a href="https://atlarge.icann.org/" target="_blank">ICANN At-Large community</a> — the voice of individual internet users in ICANN's multistakeholder policy processes. Participated in <strong>ICANN 57</strong> (Hyderabad) and <strong>ICANN 60</strong> (Abu Dhabi), representing ISOC-TRV and contributing to global internet governance. <a href="https://icannwiki.org/Ranjit_R_Nair" target="_blank">ICANNWiki profile ↗</a></div>
     </div>
-    <div class="vol-item">
-      <div class="vol-org">IEEE TEMS</div>
-      2017 – Present · Member &amp; Business Consulting
+    <div class="vol-card reveal">
+      <div class="vol-header">
+        <div class="vol-org"><a href="https://www.ieee-tems.org/" target="_blank">IEEE TEMS</a></div>
+        <div class="vol-period">2017 – Present</div>
+      </div>
+      <div class="vol-role">Member & Business Consulting</div>
+      <div class="vol-details">Active member of the IEEE Technology & Engineering Management Society — contributing to business consulting initiatives bridging engineering expertise with management and entrepreneurship challenges for technical professionals globally.</div>
+    </div>
+    <div class="vol-card reveal">
+      <div class="vol-header">
+        <div class="vol-org"><a href="https://ieeexplore.ieee.org/author/37085990801" target="_blank">IEEE Xplore</a></div>
+        <div class="vol-period">Published Author</div>
+      </div>
+      <div class="vol-role">IEEE Xplore · Published Research</div>
+      <div class="vol-details">Published research accessible on <a href="https://ieeexplore.ieee.org/author/37085990801" target="_blank">IEEE Xplore</a>, the world's leading resource for technical literature in engineering and technology. Conference contributions include Indicon 2012 and GHTC SAS (2013, 2014).</div>
     </div>
   </div>
 </section>
 
-<div class="divider"></div>
-
-<!-- CONTACT -->
-<div id="contact">
-  <div class="contact-inner">
-    <div>
-      <div class="section-label">Let's Talk</div>
-      <p class="contact-tagline">Open to <em>opportunities</em> that demand exceptional product leadership.</p>
-    </div>
-    <div class="contact-info">
-      <div class="contact-row">
-        <span class="contact-row-label">Email</span>
-        <a href="mailto:ranju@ieee.org">ranju@ieee.org</a>
+<!-- SKILLS -->
+<section id="skills">
+  <div class="reveal">
+    <p class="section-label">Capabilities</p>
+    <h2 class="section-title">Tools of the <em>trade</em></h2>
+  </div>
+  <div class="skills-layout">
+    <div class="skills-intro reveal">A decade of shipping means a full toolkit — from early discovery and user research through to launch, scaling, and retrospective learning. Comfortable leading cross-functional teams in compliance-heavy fintech environments, building in 0-to-1 ambiguity, and navigating global regulatory frameworks across EU, Canada, and Australia.</div>
+    <div class="skills-grid">
+      <div class="skill-group reveal">
+        <h4>Product</h4>
+        <div class="skill-list">
+          <div class="skill-item">Product Lifecycle Management</div>
+          <div class="skill-item">Roadmap & Prioritization</div>
+          <div class="skill-item">GTM Strategy</div>
+          <div class="skill-item">Product Strategy & Analytics</div>
+          <div class="skill-item">Agile Methodologies</div>
+        </div>
       </div>
-      <div class="contact-row">
-        <span class="contact-row-label">Phone</span>
-        <span>+1 463-212-3407</span>
+      <div class="skill-group reveal">
+        <h4>Research & Design</h4>
+        <div class="skill-list">
+          <div class="skill-item">Market & User Research</div>
+          <div class="skill-item">UX Design</div>
+          <div class="skill-item">Figma & Balsamiq</div>
+          <div class="skill-item">Iterative Testing</div>
+        </div>
       </div>
-      <div class="contact-row">
-        <span class="contact-row-label">Location</span>
-        <span>Toronto, Canada</span>
+      <div class="skill-group reveal">
+        <h4>Leadership</h4>
+        <div class="skill-list">
+          <div class="skill-item">Team & Stakeholder Mgmt</div>
+          <div class="skill-item">Cross-functional Alignment</div>
+          <div class="skill-item">Public Speaking</div>
+          <div class="skill-item">Global Community Building</div>
+        </div>
       </div>
-      <div class="contact-row">
-        <span class="contact-row-label">LinkedIn</span>
-        <a href="https://linkedin.com/in/ranjitrnair" target="_blank">linkedin.com/in/ranjitrnair</a>
+      <div class="skill-group reveal">
+        <h4>Tools & Analytics</h4>
+        <div class="skill-list">
+          <div class="skill-item">Jira · Notion · Slack</div>
+          <div class="skill-item">Google Analytics</div>
+          <div class="skill-item">Mixpanel</div>
+          <div class="skill-item">Intercom · Typeform</div>
+        </div>
       </div>
     </div>
   </div>
-</div>
+</section>
 
-<!-- FOOTER -->
+<!-- CONTACT -->
+<section id="contact">
+  <div class="reveal">
+    <h2 class="contact-heading">Let's build<br>something <em>great.</em></h2>
+  </div>
+  <div class="contact-details reveal">
+    <div class="contact-item">
+      <span class="contact-item-label">Email</span>
+      <span class="contact-item-value"><a href="mailto:ranju@ieee.org">ranju@ieee.org</a></span>
+    </div>
+    <div class="contact-item">
+      <span class="contact-item-label">Phone</span>
+      <span class="contact-item-value"><a href="tel:+14632123407">+1-463-212-3407</a></span>
+    </div>
+    <div class="contact-item">
+      <span class="contact-item-label">LinkedIn</span>
+      <span class="contact-item-value"><a href="https://linkedin.com/in/ranjitrnair" target="_blank">linkedin.com/in/ranjitrnair</a></span>
+    </div>
+    <div class="contact-item">
+      <span class="contact-item-label">IEEE Xplore</span>
+      <span class="contact-item-value"><a href="https://ieeexplore.ieee.org/author/37085990801" target="_blank">Published Author Profile ↗</a></span>
+    </div>
+    <div class="contact-item">
+      <span class="contact-item-label">ICANNWiki</span>
+      <span class="contact-item-value"><a href="https://icannwiki.org/Ranjit_R_Nair" target="_blank">icannwiki.org/Ranjit_R_Nair ↗</a></span>
+    </div>
+    <div class="contact-item">
+      <span class="contact-item-label">Location</span>
+      <span class="contact-item-value">Toronto, Canada</span>
+    </div>
+  </div>
+</section>
+
 <footer>
-  <p>© 2026 Ranjit Ramakrishnan Nair</p>
-  <p>Senior Product Manager · Toronto, Canada</p>
+  <span class="footer-copy">© 2026 Ranjit Ramakrishnan Nair. All rights reserved.</span>
+  <div class="footer-badges">
+    <a href="https://hkn.ieee.org/" target="_blank" class="footer-badge">⬡ IEEE-HKN Member</a>
+    <a href="https://atlarge.icann.org/" target="_blank" class="footer-badge">◈ ICANN At-Large</a>
+    <a href="https://www.internetsociety.org/" target="_blank" class="footer-badge">◉ ISOC Founder</a>
+    <a href="https://ieeexplore.ieee.org/author/37085990801" target="_blank" class="footer-badge">⬥ IEEE Xplore</a>
+  </div>
 </footer>
 
 <script>
-  // Scroll fade-in
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-      }
-    });
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
   }, { threshold: 0.1 });
-
-  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 </script>
 </body>
 </html>
