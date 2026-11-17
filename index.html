@@ -336,6 +336,7 @@ footer { border-top: 1px solid var(--line); padding-block: 28px 40px; color: var
             <input id="f-email" type="email" autocomplete="email">
             <label for="f-tz">Your time zone</label>
             <input id="f-tz" type="text">
+            <input id="f-website" type="text" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
           </fieldset>
           <p class="err" id="req-err" role="alert" hidden></p>
           <div class="req-nav">
@@ -401,9 +402,9 @@ document.querySelectorAll("[data-copy]").forEach(function (btn) {
 </script>
 <script>
 (function () {
-  // When the site is hosted on its own domain, put the form service URL here
-  // and requests are delivered directly. Left empty, the form prepares a note to copy.
-  var ENDPOINT = "";
+  // Requests are emailed to Ranjit through FormSubmit (formsubmit.co).
+  // Set to "" to fall back to a note the visitor copies and emails.
+  var ENDPOINT = "https://formsubmit.co/ajax/ranju@ieee.org";
 
   var form = document.getElementById("req");
   var steps = form.querySelectorAll(".step");
@@ -486,8 +487,13 @@ document.querySelectorAll("[data-copy]").forEach(function (btn) {
     if (!ENDPOINT) { done("Your request is ready", manual); return; }
     next.disabled = true;
     data.message = note.textContent;
+    data._subject = "Consultation request from " + data.name;
+    data._replyto = data.email;
+    data._template = "table";
+    data._honey = f("f-website").value;
     fetch(ENDPOINT, { method: "POST", headers: { "Content-Type": "application/json", "Accept": "application/json" }, body: JSON.stringify(data) })
-      .then(function (r) { if (!r.ok) throw new Error(); done("Request sent", "Thanks. I will reply within a few days. Here is a copy of what you sent."); })
+      .then(function (r) { return r.json().then(function (j) { if (!r.ok || String(j.success) !== "true") throw new Error(); }); })
+      .then(function () { done("Request sent", "Thanks. I will reply within a few days. Here is a copy of what you sent."); })
       .catch(function () { done("Could not send", "Something went wrong on the way. " + manual); });
   });
 
